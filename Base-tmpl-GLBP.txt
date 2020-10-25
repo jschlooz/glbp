@@ -1,0 +1,42 @@
+!
+hostname CSW0x
+!
+no ip domain-lookup
+!
+vlan 10
+ name clients
+!
+interface e0/0
+ switchport trunk encap dot1q
+ switchport mode trunk
+ no shut
+ description TO_L2_switch
+!
+interface vlan 10
+ ip address 172.18.1.x 255.255.255.0
+ glbp 10 ip 172.18.1.1
+ glbp 10 preempt
+ no shut
+!
+!
+banner exec ^C
+************************************************************
+***                     DISCLAIMER                       ***
+***                                                      ***
+***     These configs are created by Jordi Schlooz:      ***
+***     https://github.com/jschlooz/                     ***
+***                                                      ***
+***     Please respect these banners in reuse of         ***
+***     this material.                                   ***
+***     These files have been created in my spare time.  ***
+***     For any questions you may always reach out       ***
+***     https://www.linkedin.com/in/jschlooz/            ***
+***                                                      ***
+************************************************************
+^C
+!
+no ip http server
+!
+end
+wr
+!
